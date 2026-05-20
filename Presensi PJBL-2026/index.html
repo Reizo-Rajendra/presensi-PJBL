@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presensi Pameran PJBL | Team Yayubi</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="brand-panel">
+            <div class="badge">PJBL Expo 2026</div>
+            <div class="brand-content">
+                <h1>Team<br>Yayubi</h1>
+                <p>Selamat datang di booth kami! Silakan isi data kehadiran Anda sebagai bentuk dukungan digital terhadap inovasi proyek kami.</p>
+            </div>
+            <div class="brand-footer">
+                <i class="fas fa-shield-halved fa-bounce"></i>
+                <span>Secure Attendance Node</span>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <div class="form-panel" id="form-container">
+                <div>
+                    <h2>Registrasi Pengunjung</h2>
+                    <form id="presensi-form">
+                        
+                        <div class="form-group">
+                            <label for="nama">Nama Lengkap</label>
+                            <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap Anda" required autocomplete="off">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="whatsapp">Nomor WhatsApp</label>
+                            <input type="tel" id="whatsapp" name="whatsapp" placeholder="Contoh: 081234567xxx" required autocomplete="off">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Kategori Pengunjung</label>
+                            <div class="radio-grid">
+                                <label class="radio-card">
+                                    <input type="radio" name="instansi_kategori" value="Siswa" required> Siswa
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="instansi_kategori" value="Orang Tua"> Orang Tua
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="instansi_kategori" value="Guru"> Guru
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="instansi_kategori" value="Penilai"> Penilai
+                                </label>
+                                <label class="radio-card" style="grid-column: span 2;">
+                                    <input type="radio" name="instansi_kategori" value="Umum"> Umum / Pengunjung Luar
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rating">Rating untuk Proyek Kami</label>
+                            <select id="rating" name="rating" required>
+                                <option value="" disabled selected>Pilih penilaian Anda...</option>
+                                <option value="⭐⭐⭐⭐⭐ (Sangat Puas)">⭐⭐⭐⭐⭐ (Sangat Puas)</option>
+                                <option value="⭐⭐⭐⭐ (Puas)">⭐⭐⭐⭐ (Puas)</option>
+                                <option value="⭐⭐⭐ (Cukup)">⭐⭐⭐ (Cukup)</option>
+                                <option value="⭐⭐ (Kurang)">⭐⭐ (Kurang)</option>
+                                <option value="⭐ (Perlu Perbaikan)">⭐ (Perlu Perbaikan)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pesan">Kesan, Kritik atau Saran</label>
+                            <input type="text" id="pesan" name="pesan" placeholder="Tulis masukan atau kesan Anda di sini" required autocomplete="off">
+                        </div>
+
+                        <button type="submit" id="submit-btn" class="btn-submit">
+                            <span>Check-In Kehadiran</span>
+                            <i class="fas fa-right-to-bracket"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="author-footer">
+                    <i class="fa-solid fa-fire" style="color: #ff007f;"></i> Crafted by <span class="author-name">Reizo Rajendra Dianta</span> | X PPLG 1
+                </div>
+            </div>
+
+            <div class="success-wrapper" id="success-message">
+                <div class="success-card">
+                    <div class="success-glow-ring"></div>
+                    <div class="success-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                </div>
+                
+                <h3>Access Granted!</h3>
+                <p class="success-sub">Terima kasih, data kehadiran Anda berhasil diamankan ke dalam sistem.</p>
+                
+                <div class="visitor-summary">
+                    <div class="summary-row">
+                        <span class="summary-label">Pengunjung:</span>
+                        <span class="summary-value" id="res-nama">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Status:</span>
+                        <span class="summary-value text-neon" id="res-kategori">-</span>
+                    </div>
+                </div>
+
+                <div class="success-actions">
+                    <button onclick="location.reload()" class="btn-reset">
+                        <i class="fas fa-rotate-left"></i>
+                        <span>Selesai & Tutup</span>
+                    </button>
+                </div>
+                
+                <div class="author-footer" style="margin-top: 40px;">
+                    <i class="fa-solid fa-fire" style="color: #ff007f;"></i> Crafted by <span class="author-name">Reizo Rajendra Dianta</span> | X PPLG 1
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('presensi-form');
+        const btn = document.getElementById('submit-btn');
+        const formContainer = document.getElementById('form-container');
+        const successMessage = document.getElementById('success-message');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Set Loading state di Tombol
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> <span>Mengunci Data...</span>';
+
+            // Ambil data input
+            const namaVal = document.getElementById('nama').value;
+            const whatsappVal = document.getElementById('whatsapp').value;
+            const kategoriVal = document.querySelector('input[name="instansi_kategori"]:checked').value;
+            const ratingVal = document.getElementById('rating').value;
+            const pesanVal = document.getElementById('pesan').value;
+            
+            // Kunci Waktu Aktual
+            const sekarang = new Date();
+            const waktuVal = sekarang.toLocaleString('id-ID');
+
+            // Set ke Tampilan Sukses
+            document.getElementById('res-nama').innerText = namaVal;
+            document.getElementById('res-kategori').innerText = kategoriVal;
+
+            // Bungkus ke JSON Object biar SheetDB 100% ngebaca teks nomor WA
+            const payload = {
+                data: [
+                    {
+                        nama: namaVal,
+                        whatsapp: whatsappVal,
+                        instansi_kategori: kategoriVal,
+                        rating: ratingVal,
+                        pesan: pesanVal,
+                        waktu: waktuVal
+                    }
+                ]
+            };
+
+            // !! MASUKKAN URL API SHEETDB KAMU DI SINI !!
+            const API_URL = 'https://sheetdb.io/api/v1/okmgbxtfps0sf';
+
+            fetch(API_URL, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if(response.ok) {
+                    formContainer.style.display = 'none';
+                    successMessage.style.display = 'block';
+                } else {
+                    alert('Gagal mengirim absensi. Pastikan kolom di Google Sheets sudah sesuai dan benar!');
+                    resetButton();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Koneksi terputus! Pastikan device terhubung internet.');
+                resetButton();
+            });
+        });
+
+        function resetButton() {
+            btn.disabled = false;
+            btn.innerHTML = '<span>Check-In Kehadiran</span> <i class="fas fa-right-to-bracket"></i>';
+        }
+    </script>
+</body>
+</html>
